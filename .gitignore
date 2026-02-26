@@ -1,0 +1,37 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+venv/
+.env/
+myenv/
+
+# Local environment variables for testing
+.env
+
+# Generated protobuf files
+.protos
+src/hiero_sdk_python/hapi
+
+# VS Code settings
+.vscode/
+
+# Mac OS X Files
+.DS_Store
+
+# Intellij
+.idea
+
+# Pytest
+.pytest_cache
+
+# Lock files
+uv.lock
+pdm.lock
+pubkey.asc

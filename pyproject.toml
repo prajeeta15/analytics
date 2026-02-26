@@ -1,0 +1,94 @@
+[project]
+name = "hiero"
+dynamic = ["version"]
+description = "Hiero analytics"
+maintainers = [
+    { name = "Sophie Bulloch", email = "exploreriii57@gmail.com" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.11, <4"
+dependencies = [
+    "matplotlib>=3.5",
+    "pandas>=2.8.0",
+    "requests>=2.30",
+    "dotenv>=0.9"
+
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+]
+
+[project.optional-dependencies]
+
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4,<10",
+    "pytest-cov>=7.0.0,<10",
+]
+
+lint = [
+    "ruff>=0.14.9,<1",
+]
+
+[tool.uv]
+default-groups = ["dev", "lint"]
+
+[build-system]
+requires = ["pdm-backend", "setuptools", "setuptools_scm", "grpcio-tools"]
+build-backend = "pdm.backend"
+
+[tool.setuptools_scm]
+version_scheme = "python-simplified-semver"
+local_scheme = "dirty-tag"
+
+[tool.pdm]
+version = { source = "scm" }
+
+[tool.pdm.build]
+package-dir = "analytics"
+excludes = ["**/.pytest_cache"]
+
+[tool.pytest.ini_options]
+pythonpath = ["analytics", "."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+    "D",    # docstrings
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "I",    # import sorting
+    "B",    # bugbear (real bugs)
+    "UP",   # pyupgrade (modern syntax)
+    "SIM",  # simplify logic
+    "PERF", # performance traps
+    "ARG",  # unused function arguments
+    "RET",  # return consistency
+    "RSE",  # exception correctness
+]
+ignore = [
+    "D212",     # disable "summary on same line"
+    "E501",     # line length -> formatter
+    "B008",     # function calls in argument defaults 
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
